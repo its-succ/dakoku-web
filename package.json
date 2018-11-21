@@ -1,0 +1,27 @@
+{
+  "name": "dakoku-web",
+  "version": "1.0.0",
+  "description": "勤怠打刻システムのユーザー管理WEBサーバー",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/its-succ/dakoku-web.git"
+  },
+  "author": "k-kishida@esm.co.jp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/its-succ/dakoku-web/issues"
+  },
+  "homepage": "https://github.com/its-succ/dakoku-web#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-plugin-node": "^8.0.0"
+  }
+}
