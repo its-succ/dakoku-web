@@ -1,0 +1,6 @@
+{
+  "name": "dakoku",
+  "short_name": "dakoku",
+  "start_url": "/",
+  "display": "standalone"
+}

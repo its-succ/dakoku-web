@@ -62,3 +62,6 @@ typings/
 
 # Editor settings
 .brackets.json
+
+# Bower
+bower_components
