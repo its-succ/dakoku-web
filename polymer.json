@@ -1,0 +1,13 @@
+{
+  "entrypoint": "index.html",
+  "shell": "public/src/dakoku-app/dakoku-app.html",
+  "sources": [
+    "public/src/**/*",
+    "bower.json"
+  ],
+  "lint": {
+    "rules": [
+      "polymer-2"
+    ]
+  }
+}

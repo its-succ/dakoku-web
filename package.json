@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "eslint": "^5.9.0",
-    "eslint-plugin-node": "^8.0.0"
+    "eslint-plugin-node": "^8.0.0",
+    "polymer-modulizer": "^0.4.1"
   }
 }
