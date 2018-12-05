@@ -1,13 +1,21 @@
 {
-  "entrypoint": "index.html",
-  "shell": "public/src/dakoku-app/dakoku-app.html",
+  "entrypoint": "public/index.html",
+  "shell": "public/src/dakoku-app/dakoku-app.js",
   "sources": [
-    "public/src/**/*",
-    "bower.json"
+    "public/src/dakoku-app/*.js",
+    "public/service-worker.js",
+    "package.json"
   ],
-  "lint": {
-    "rules": [
-      "polymer-2"
-    ]
-  }
+  "extraDependencies": [
+    "public/manifest.json",
+    "node_modules/@webcomponents/webcomponentsjs/**",
+    "app.yaml",
+    "index.js"
+  ],
+  "moduleResolution": "node",
+  "npm": true,
+  "builds": [
+    { "preset": "es5-bundled" },
+    { "preset": "es6-unbundled" }
+  ]
 }

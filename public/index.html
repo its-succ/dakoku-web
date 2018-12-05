@@ -10,11 +10,50 @@
     <!-- See https://goo.gl/OOhYW5 -->
     <link rel="manifest" href="/manifest.json">
 
-    <script src="/bower_components/webcomponentsjs/webcomponents-loader.js"></script>
-
-    <link rel="import" href="/src/dakoku-app/dakoku-app.html">
   </head>
   <body>
     <dakoku-app></dakoku-app>
+    <script>
+      // Register service worker if supported.
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('service-worker.js', {
+            scope: '/',
+          });
+        });
+      }
+      window.process = {
+        env: {
+          NODE_ENV: 'production'
+        }
+      };
+    </script>
+    <script src="node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script>
+      // Subset of fetch polyfill for IE11 (supports GET requests for JSON only).
+      // Requires Promise to be defined.
+      window.fetch = window.fetch || function(url) {
+        return new Promise(function(resolve, reject) {
+          var xhr = new XMLHttpRequest();
+          xhr.onload = function() {
+            resolve({
+              json: function() {
+                return new Promise(function(resolve, reject) {
+                  try {
+                    resolve(JSON.parse(xhr.responseText));
+                  } catch (e) {
+                    reject(e);
+                  }
+                });
+              }
+            });
+          };
+          xhr.onerror = reject;
+          xhr.open('GET', url);
+          xhr.send();
+        });
+      };
+    </script>
+    <script type="module" src="src/dakoku-app/dakoku-app.js"></script>
   </body>
 </html>

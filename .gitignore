@@ -63,5 +63,6 @@ typings/
 # Editor settings
 .brackets.json
 
-# Bower
-bower_components
+# Polymer Build
+build
+

@@ -1,7 +1,12 @@
 {
-  "name": "dakoku-web",
-  "version": "1.0.0",
   "description": "勤怠打刻システムのユーザー管理WEBサーバー",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/its-succ/dakoku-web.git"
+  },
+  "homepage": "https://github.com/its-succ/dakoku-web#readme",
+  "name": "dakoku-web",
+  "version": "",
   "main": "index.js",
   "engines": {
     "node": "~10.0.0",
@@ -9,24 +14,35 @@
   },
   "scripts": {
     "start": "node index.js",
+    "build": "cp -R node_modules/@google-web-components/google-apis node_modules/ & polymer build -v",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/its-succ/dakoku-web.git"
   },
   "author": "k-kishida@esm.co.jp",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/its-succ/dakoku-web/issues"
   },
-  "homepage": "https://github.com/its-succ/dakoku-web#readme",
   "dependencies": {
+    "@google-web-components/google-apis": "git+https://github.com/GoogleWebComponents/google-apis.git#3.x",
+    "@polymer/google-signin": "git+https://github.com/GoogleWebComponents/google-signin.git",
+    "@polymer/iron-ajax": "^3.0.0-pre.18",
+    "@polymer/paper-button": "^3.0.0-pre.18",
+    "@polymer/paper-input": "^3.0.0-pre.18",
+    "@polymer/polymer": "^3.0.0",
     "express": "^4.16.4"
   },
   "devDependencies": {
+    "@webcomponents/webcomponentsjs": "^2.0.0",
     "eslint": "^5.9.0",
     "eslint-plugin-node": "^8.0.0",
-    "polymer-modulizer": "^0.4.1"
+    "polymer-cli": "^1.9.1",
+    "polymer-modulizer": "^0.4.1",
+    "wct-browser-legacy": "^1.0.1"
+  },
+  "resolutions": {
+    "inherits": "2.0.3",
+    "samsam": "1.1.3",
+    "supports-color": "3.1.2",
+    "type-detect": "1.0.0"
   }
 }
