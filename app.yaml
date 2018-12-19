@@ -1,3 +1,6 @@
 # [START app_yaml]
 runtime: nodejs10
+
+includes:
+- secret.yaml
 # [END app_yaml]

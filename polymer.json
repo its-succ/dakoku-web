@@ -3,14 +3,11 @@
   "shell": "public/src/dakoku-app/dakoku-app.js",
   "sources": [
     "public/src/dakoku-app/*.js",
-    "public/service-worker.js",
-    "package.json"
+    "public/service-worker.js"
   ],
   "extraDependencies": [
     "public/manifest.json",
-    "node_modules/@webcomponents/webcomponentsjs/**",
-    "app.yaml",
-    "index.js"
+    "node_modules/@webcomponents/webcomponentsjs/**"
   ],
   "moduleResolution": "node",
   "npm": true,
