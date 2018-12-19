@@ -1,0 +1,21 @@
+{
+  "entrypoint": "public/index.html",
+  "shell": "public/src/dakoku-app/dakoku-app.js",
+  "sources": [
+    "public/src/dakoku-app/*.js",
+    "public/service-worker.js",
+    "package.json"
+  ],
+  "extraDependencies": [
+    "public/manifest.json",
+    "node_modules/@webcomponents/webcomponentsjs/**",
+    "app.yaml",
+    "index.js"
+  ],
+  "moduleResolution": "node",
+  "npm": true,
+  "builds": [
+    { "preset": "es5-bundled" },
+    { "preset": "es6-unbundled" }
+  ]
+}
