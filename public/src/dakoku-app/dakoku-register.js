@@ -6,12 +6,32 @@ import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 class DakokuRegister extends PolymerElement {
   static get template() {
     return html`
-    <iron-ajax id="ajax" method="POST" url="/api/register" content-type="application/json" body="[[registerData]]" on-response="handleRegisterSuccess" on-error="handleRegisterError"></iron-ajax>
-    <h3>社員証登録</h3>
-    <paper-input label="社員証のNFCコード" value="{{cardNumber::input}}"></paper-input>
-    <paper-input label="TeamSpritのパスワード" type="password" value="{{password::input}}"></paper-input>
-    <paper-button raised="" class="indigo" on-click="register">登録</paper-button>
-`;
+      <custom-style>
+        <style>
+          paper-button.indigo {
+            background-color: var(--paper-indigo-500);
+            color: white;
+            --paper-button-raised-keyboard-focus: {
+              background-color: var(--paper-pink-a200) !important;
+              color: white !important;
+            };
+          }
+          paper-button:hover {
+            background-color: var(--paper-indigo-100);
+          }
+          paper-button[disabled] {
+            color: white;
+            background-color: var(--paper-indigo-50);
+          }
+        </style>
+      </custom-style>
+      <iron-ajax id="ajax" method="POST" url="/api/register" content-type="application/json" body="[[registerData]]" on-response="handleRegisterSuccess" on-error="handleRegisterError"></iron-ajax>
+      <h3>カード登録</h3>
+      <paper-input id="cardnumber" label="NFC ID" placeholder="社員証やSUICAなどのカードIDを数字16桁で入力してください" value="{{cardNumber::input}}" required allowed-pattern="[0-9]" maxlength="16" error-message="社員証やSUICAなどのカードIDを数字16桁で入力してください"></paper-input>
+      <paper-input id="password" label="TeamSpritのパスワード" placeholder="TeamSpritのパスワードを入力してください" type="password" value="{{password::input}}" required auto-validate error-message="必須入力です"></paper-input>
+      <br><br>
+      <paper-button id="button" raised active disabled class="indigo" on-click="register">登録</paper-button>
+    `;
   }
 
   static get is() {
@@ -20,13 +40,22 @@ class DakokuRegister extends PolymerElement {
 
   static get properties() {
     return {
-      cardNumber: String,
+      cardNumber: {
+        type: String,
+        observer: '_cardNumberChanged'
+      },
       password: String,
       registerData: {
         type: Object,
         computed: 'computeRegisterData(cardNumber, password)'
       }
     };
+  }
+
+  static get observers() {
+    return [
+      '_validate(cardNumber, password)'
+    ]
   }
 
   register() {
@@ -46,6 +75,17 @@ class DakokuRegister extends PolymerElement {
 
   handleRegisterError() {
     console.log(arguments)
+  }
+
+  _cardNumberChanged(value) {
+    this.$.cardnumber.invalid = value.length !== 16;
+  }
+
+  _validate() {
+    this.$.button.disabled = !this.cardNumber
+        || !this.password
+        || this.$.cardnumber.invalid
+        || this.$.password.invalid;
   }
 }
 
