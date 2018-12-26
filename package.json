@@ -15,7 +15,9 @@
   "scripts": {
     "start": "node index.js",
     "build": "cp -R node_modules/@google-web-components/google-apis node_modules/ & polymer build -v",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "local": "gcloud beta emulators datastore start --no-legacy --project 'dakoku-187702' --host-port=localhost:8081 & DATASTORE_EMULATOR_HOST=localhost:8081 DATASTORE_PROJECT_ID='dakoku-187702' node index.js",
+    "gui": "google-cloud-gui --port=8082 --skip-browser"
   },
   "author": "k-kishida@esm.co.jp",
   "license": "MIT",
@@ -23,6 +25,7 @@
     "url": "https://github.com/its-succ/dakoku-web/issues"
   },
   "dependencies": {
+    "@google-cloud/datastore": "^2.0.0",
     "@google-web-components/google-apis": "git+https://github.com/GoogleWebComponents/google-apis.git#3.x",
     "@polymer/google-signin": "git+https://github.com/GoogleWebComponents/google-signin.git",
     "@polymer/iron-ajax": "^3.0.0-pre.18",
@@ -31,13 +34,16 @@
     "@polymer/polymer": "^3.0.0",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
+    "express-bearer-token": "^2.2.0",
     "express-promise-router": "^3.0.3",
-    "google-auth-library": "^2.0.2"
+    "google-auth-library": "^2.0.2",
+    "gstore-node": "^4.3.2"
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.0.0",
     "eslint": "^5.9.0",
     "eslint-plugin-node": "^8.0.0",
+    "google-cloud-gui": "^0.2.2",
     "polymer-cli": "^1.9.1",
     "polymer-modulizer": "^0.4.1",
     "wct-browser-legacy": "^1.0.1"

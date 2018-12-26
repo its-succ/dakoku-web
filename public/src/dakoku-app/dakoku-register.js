@@ -25,7 +25,14 @@ class DakokuRegister extends PolymerElement {
           }
         </style>
       </custom-style>
-      <iron-ajax id="ajax" method="POST" url="/api/register" content-type="application/json" body="[[registerData]]" on-response="handleRegisterSuccess" on-error="handleRegisterError"></iron-ajax>
+      <iron-ajax
+        id="ajax"
+        method="POST"
+        url="/api/register"
+        content-type="application/json"
+        body="[[registerData]]"
+        on-response="handleRegisterSuccess"
+        on-error="handleRegisterError"></iron-ajax>
       <h3>カード登録</h3>
       <paper-input id="cardnumber" label="NFC ID" placeholder="社員証やSUICAなどのカードIDを数字16桁で入力してください" value="{{cardNumber::input}}" required allowed-pattern="[0-9]" maxlength="16" error-message="社員証やSUICAなどのカードIDを数字16桁で入力してください"></paper-input>
       <paper-input id="password" label="TeamSpritのパスワード" placeholder="TeamSpritのパスワードを入力してください" type="password" value="{{password::input}}" required auto-validate error-message="必須入力です"></paper-input>
@@ -48,7 +55,8 @@ class DakokuRegister extends PolymerElement {
       registerData: {
         type: Object,
         computed: 'computeRegisterData(cardNumber, password)'
-      }
+      },
+      token: String,
     };
   }
 
@@ -59,6 +67,9 @@ class DakokuRegister extends PolymerElement {
   }
 
   register() {
+    this.$.ajax.headers = {
+      Authorization: 'Bearer ' + this.token
+    };
     this.$.ajax.generateRequest();
   }
 

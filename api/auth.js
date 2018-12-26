@@ -1,18 +1,8 @@
 const router = require('express-promise-router')();
-
-const {OAuth2Client} = require('google-auth-library');
-const client = new OAuth2Client(process.env.CLIENT_ID);
-
-const verify = async token => {
-  const ticket = await client.verifyIdToken({
-    idToken: token,
-    audience: process.env.CLIENT_ID,
-  });
-  return ticket.getPayload();
-};
+const verify = require('./token-verifier');
 
 router.post('/', async (req, res) => {
-  const idTokenString = req.body.idToken;
+  const idTokenString = req.token;
   const payload = await verify(idTokenString);
   if (!payload) {
     res.sendStatus(400);
