@@ -54,8 +54,9 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
+# dotenv or direnv environment variables file
 .env
+.envrc
 
 # next.js build output
 .next
@@ -66,3 +67,5 @@ typings/
 # Polymer Build
 build
 
+# application secret
+secret.yaml

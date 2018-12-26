@@ -20,7 +20,7 @@ class DakokuApp extends PolymerElement {
 
     <google-signin brand="google" height="standard" client-id="512704348312-hhq0htjk798tahele7tf32n2ckc4supa.apps.googleusercontent.com"></google-signin>
 
-    <iron-ajax id="ajax" method="POST" url="/auth" content-type="application/x-www-form-urlencoded" body="[[tokenObject]]" on-response="handleAuthSuccess" on-error="handleAuthError"></iron-ajax>
+    <iron-ajax id="ajax" method="POST" url="/api/auth" content-type="application/x-www-form-urlencoded" body="[[tokenObject]]" on-response="handleAuthSuccess" on-error="handleAuthError"></iron-ajax>
 
     <template is="dom-if" if="{{isAuthorized}}">
       <h2>打刻アプリにようこそ [[email]]!</h2>
