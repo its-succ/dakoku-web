@@ -14,9 +14,14 @@
 
 `npm install`
 
-## Run
+## Run Local
 
-### On Local
+### Environment
+
+* CLIENT_ID Servive Account client id, for using at OAuth2Client
+* SECRET_KEY Secret key string, for crypting user password on Cloud Datastore
+
+### Server
 
 ```
 npm run local

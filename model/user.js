@@ -15,9 +15,7 @@ const userSchema = new Schema({
 });
 
 function hashPassword() {
-  const key = "abcdefghijklmnopqrstuvwx";
-
-  const encrypt = crypto.createCipheriv('des-ede3', key, "");
+  const encrypt = crypto.createCipheriv('des-ede3', process.env.SECRET_KEY, "");
   let theCipher = encrypt.update(this.password, 'utf8', 'base64');
   theCipher += encrypt.final('base64');
   this.password = theCipher;
