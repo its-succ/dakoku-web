@@ -5,7 +5,7 @@ const verify = async token => {
   const ticket = await client.verifyIdToken({
     idToken: token,
     audience: process.env.CLIENT_ID,
-  }).catch(e => {
+  }).catch(() => {
     return null;
   });
   return ticket.getPayload();
