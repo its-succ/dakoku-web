@@ -15,7 +15,7 @@
   "scripts": {
     "start": "node index.js",
     "build": "cp -R node_modules/@google-web-components/google-apis node_modules/ & polymer build -v",
-    "test": "jest",
+    "test": "DATASTORE_EMULATOR_HOST=localhost:8081 DATASTORE_PROJECT_ID='test' jest --runInBand",
     "lint": "eslint --fix \"**/*.js\"",
     "local": "gcloud beta emulators datastore start --no-legacy --project 'dakoku-187702' --host-port=localhost:8081 & DATASTORE_EMULATOR_HOST=localhost:8081 DATASTORE_PROJECT_ID='dakoku-187702' node index.js",
     "gui": "google-cloud-gui --port=8082 --skip-browser"
@@ -37,8 +37,10 @@
     "express": "^4.16.4",
     "express-bearer-token": "^2.2.0",
     "express-promise-router": "^3.0.3",
+    "express-validation": "^1.0.2",
     "google-auth-library": "^2.0.2",
-    "gstore-node": "^4.3.2"
+    "gstore-node": "^4.3.2",
+    "joi": "^14.3.0"
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "^2.0.0",
@@ -50,6 +52,7 @@
     "jest": "^23.6.0",
     "polymer-cli": "^1.9.1",
     "polymer-modulizer": "^0.4.1",
+    "supertest": "^3.3.0",
     "wct-browser-legacy": "^1.0.1"
   },
   "resolutions": {

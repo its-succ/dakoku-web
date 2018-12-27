@@ -7,9 +7,8 @@ const datastore = new Datastore();
 gstore.connect(datastore);
 
 const userSchema = new Schema({
-  idm: { type: String, required: true },
   email: { type: String, validate: 'isEmail', required: true },
-  password: { type: String, read: false, required: true },
+  password: { type: String, required: true },
   createdOn: { type: Date, default: gstore.defaultValues.NOW, write: false },
   modifiedOn: { type: Date, write: false },
 });
