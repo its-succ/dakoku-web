@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
   } else {
     const domain = payload.hd;
     if ("esm.co.jp" != domain) {
-      res.sendStatus(400);
+      res.sendStatus(403);
     } else {
       res.sendStatus(200);
     }

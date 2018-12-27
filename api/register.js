@@ -14,12 +14,12 @@ router.post('/', async (req, res) => {
 
     const entity = await user.save().catch(err => {
       console.log('ERROR', err);
-      res.status(400).json(err);
+      res.status(500).json(err);
     });
     res.status(201).json(entity.plain());
 
   } else {
-    res.sendStatus(400);
+    res.sendStatus(403);
   }
 })
 
