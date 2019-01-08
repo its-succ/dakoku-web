@@ -24,7 +24,7 @@ class DakokuApp extends PolymerElement {
 
     <template is="dom-if" if="{{isAuthorized}}">
       <h2>打刻アプリにようこそ [[email]]!</h2>
-      <dakoku-register></dakoku-register>
+      <dakoku-register token="[[idToken]]"></dakoku-register>
     </template>
 `;
   }
