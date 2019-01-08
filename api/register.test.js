@@ -63,3 +63,10 @@ test('値が正しいときは登録が成功して201が戻ること', () => {
     expect(response.body.modifiedOn).toBeDefined();
   })
 });
+
+test('値が重複しているときは409エラーを返すこと', async () => {
+  verify.mockImplementation(async () => { return { hd: 'esm.co.jp', email: 'hoge@esm.co.jp' }; });
+  await request(app).post("/").send(successBody);
+  const response = await request(app).post("/").send(successBody);
+  expect(response.statusCode).toBe(409);
+});
