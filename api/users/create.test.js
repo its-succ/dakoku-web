@@ -2,13 +2,18 @@ const request = require('supertest');  // eslint-disable-line node/no-unpublishe
 const Emulator = require('google-datastore-emulator');  // eslint-disable-line node/no-unpublished-require
 const express = require('express');
 const bodyParser = require('body-parser');
-const register = require('./register');
+
+const router = require('express-promise-router')();
+const User = require('../../model/user');
+const verify = require('../token-verifier');
+jest.mock('../token-verifier');
+
+const create = require('./create');
 const app = express();
 app.use(bodyParser.json());
-app.use(register);
 
-const verify = require('./token-verifier');
-jest.mock('./token-verifier');
+create({router, User, verify});
+app.use(router);
 
 const successBody = {
   cardNumber: '1234567890123456',
@@ -40,11 +45,11 @@ test('トークンのドメインが不正な場合は403エラーを返すこ�
 });
 
 test.each`
-  cardNumber            | password      | desc
-  ${""}                 | ${"1234567"}  | ${"カード番号が空"}
-  ${"123"}              | ${"1234567"}  | ${"カード番号が16桁でない"}
-  ${"123456789a123456"} | ${"1234567"}  | ${"カード番号が16桁だが数字以外が含まれている"}
-  ${"1234567890123456"} | ${""}         | ${"パスワードが空"}
+cardNumber            | password      | desc
+${""}                 | ${"1234567"}  | ${"カード番号が空"}
+${"123"}              | ${"1234567"}  | ${"カード番号が16桁でない"}
+${"123456789a123456"} | ${"1234567"}  | ${"カード番号が16桁だが数字以外が含まれている"}
+${"1234567890123456"} | ${""}         | ${"パスワードが空"}
 `('$descによってバリデーションエラーの場合は400エラーを返すこと', ({cardNumber, password}) => {
   verify.mockImplementation(async () => { return { hd: 'esm.co.jp', email: 'hoge@esm.co.jp' }; });
   return request(app).post("/").send({cardNumber, password}).then(response => {
@@ -58,7 +63,7 @@ test('値が正しいときは登録が成功して201が戻ること', () => {
     expect(response.statusCode).toBe(201);
     expect(response.body.id).toBe(successBody.cardNumber);
     expect(response.body.email).toBe('hoge@esm.co.jp');
-    expect(response.body.password).toBeDefined();
+    expect(response.body.password).not.toBeDefined();
     expect(response.body.createdOn).toBeDefined();
     expect(response.body.modifiedOn).toBeDefined();
   })

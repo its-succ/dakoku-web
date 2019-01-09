@@ -28,7 +28,7 @@ class DakokuRegister extends PolymerElement {
       <iron-ajax
         id="ajax"
         method="POST"
-        url="/api/register"
+        url="/api/users"
         content-type="application/json"
         body="[[registerData]]"
         on-response="handleRegisterSuccess"
