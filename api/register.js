@@ -1,6 +1,7 @@
 const router = require('express-promise-router')();
 const validate = require('express-validation');
 const Joi = require('joi');
+const grpc = require('grpc');
 const verify = require('./token-verifier');
 const User = require('../model/user');
 
@@ -20,9 +21,9 @@ router.post('/', validate(validation), async (req, res) => {
       password: req.body.password
     }, req.body.cardNumber);
 
-    const entity = await user.save().catch(err => {
+    const entity = await user.save(null, { method: 'insert' }).catch(err => {
       console.log('ERROR', err);
-      res.status(500).json(err);
+      res.status(err.code === grpc.status.ALREADY_EXISTS ? 409 : 500).json(err);
     });
     res.status(201).json(entity.plain());
 
