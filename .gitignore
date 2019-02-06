@@ -69,3 +69,7 @@ build
 
 # application secret
 secret.yaml
+
+# anyenv
+.java-version
+.python-version

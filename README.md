@@ -1,6 +1,10 @@
 # dakoku-web
 勤怠打刻システムのユーザー管理WEBサーバー
 
+## Structure
+
+![](dakoku-structure-draw.io.svg)
+
 ## Install
 
 ### Requirements
@@ -14,12 +18,21 @@
 
 `npm install`
 
+## Create Task Queue
+
+Task Queue **only** create from CLI.
+
+[App Engine キューの作成](https://cloud.google.com/tasks/docs/creating-appengine-queues?hl=ja)
+
 ## Run Local
 
 ### Environment
 
 * CLIENT_ID Servive Account client id, for using at OAuth2Client
 * SECRET_KEY Secret key string, for crypting user password on Cloud Datastore
+* DAKOKU_QUEUE_DAKOKU_SCRIPT Queue name of AppEngine Task Queue for execute dakoku-script service
+* DAKOKU_LOCATION Google AppEngine location where the app deployed
+* GOOGLE_CLOUD_PROJECT Google AppEngine project id is only set on local environment
 
 ### Server
 
