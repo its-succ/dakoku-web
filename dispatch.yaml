@@ -1,0 +1,4 @@
+dispatch:
+  # dakoku-scriptへのパス
+  - url: "*/script/*"
+    service: dakoku-script

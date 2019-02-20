@@ -1,6 +1,6 @@
 const cloudTasks = require('@google-cloud/tasks');
 
-module.exports = async ({email, password}) => {
+module.exports = async ({email, password, action}) => {
   const client = new cloudTasks.CloudTasksClient();
 
   // Construct the fully qualified queue name.
@@ -9,11 +9,11 @@ module.exports = async ({email, password}) => {
   const task = {
     appEngineHttpRequest: {
       httpMethod: 'POST',
-      relativeUri: '/',
+      relativeUri: '/script',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: Buffer.from(JSON.stringify({user: email, password: password})).toString('base64')
+      body: Buffer.from(JSON.stringify({user: email, password, action})).toString('base64')
     },
   };
 

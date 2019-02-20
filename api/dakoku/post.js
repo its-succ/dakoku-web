@@ -8,7 +8,8 @@ module.exports = ({router, User}) => {
       'x-appengine-queuename': Joi.string().required()
     },
     body: {
-      cardNumber: Joi.string().regex(/^[0-9]{16}$/).required()
+      cardNumber: Joi.string().regex(/^[0-9]{16}$/).required(),
+      action: Joi.string().required()
     }
   };
 
@@ -19,7 +20,7 @@ module.exports = ({router, User}) => {
       res.status(204).send();
     });
     const user = entity.plain({ virtuals: true });
-    await dakokuRequest({email: user.email, password: user.decryptPassword});
+    await dakokuRequest({email: user.email, password: user.decryptPassword, action: req.body.action});
     res.status(202).send();
   });
 };
