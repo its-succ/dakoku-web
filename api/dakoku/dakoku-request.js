@@ -3,9 +3,6 @@ const cloudTasks = require('@google-cloud/tasks');
 module.exports = async ({email, password}) => {
   const client = new cloudTasks.CloudTasksClient();
 
-  // const queue = 'my-appengine-queue';
-  // const location = 'us-central1';
-
   // Construct the fully qualified queue name.
   const parent = client.queuePath(process.env.GOOGLE_CLOUD_PROJECT, process.env.DAKOKU_LOCATION, process.env.DAKOKU_QUEUE_DAKOKU_SCRIPT);
 

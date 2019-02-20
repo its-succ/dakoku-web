@@ -1,6 +1,5 @@
 const validate = require('express-validation');
 const Joi = require('joi');
-const grpc = require('grpc');
 const dakokuRequest = require('./dakoku-request');
 
 module.exports = ({router, User}) => {
