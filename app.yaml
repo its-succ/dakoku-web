@@ -3,4 +3,8 @@ runtime: nodejs10
 
 includes:
 - secret.yaml
+
+env_variables:
+  DAKOKU_QUEUE_DAKOKU_SCRIPT: 'dakoku-script-queue'
+  DAKOKU_LOCATION: 'asia-northeast1'
 # [END app_yaml]

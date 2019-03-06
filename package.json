@@ -9,7 +9,7 @@
   "version": "",
   "main": "index.js",
   "engines": {
-    "node": "~10.0.0",
+    "node": "~10.6.0",
     "npm": "~6.4.1"
   },
   "scripts": {
@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "@google-cloud/datastore": "^2.0.0",
+    "@google-cloud/tasks": "^0.2.2",
     "@google-web-components/google-apis": "git+https://github.com/GoogleWebComponents/google-apis.git#3.x",
     "@polymer/google-signin": "git+https://github.com/GoogleWebComponents/google-signin.git",
     "@polymer/iron-ajax": "^3.0.0-pre.18",
