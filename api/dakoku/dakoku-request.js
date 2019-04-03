@@ -9,7 +9,7 @@ module.exports = async ({email, password, action}) => {
   const task = {
     appEngineHttpRequest: {
       httpMethod: 'POST',
-      relativeUri: '/script',
+      relativeUri: '/',
       headers: {
         'Content-Type': 'application/json'
       },
