@@ -11,19 +11,16 @@ module.exports = ({router, User, verify}) => {
         email: payload.email
       });
 
-      // gstore-nodeで書いてみる TODO まだ書いただけ
-      const query = User.query().filter('id', '=', user.email);
+      // 1. Build query.
+      const query = User.query().filter('email', '=', user.email);
 
       // 2. Execute the query.
       // with Promise
-      query.run().then((response) => {
-          const entities = response.entities;
-          console.log("entities", entities)
+      const results = await query.run().then((response) => {
+          return response.entities;
       });
 
-      // 固定文字で返してみる TDD
-      const results = ['1234567890123456', '987654321012345'];
-      res.status(200).json(results);
+      res.status(200).json(results.map(r => r.id).sort());
 
     } else {
       res.sendStatus(403);

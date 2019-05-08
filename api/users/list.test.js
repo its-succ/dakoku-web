@@ -17,7 +17,6 @@ app.use(router);
 
 const successBody = [ '1234567890123456', '987654321012345' ];
 
-
 const emulator = new Emulator();
 
 beforeAll(async () => {
@@ -53,11 +52,9 @@ test('トークンのドメインが不正な場合は403エラーを返すこ�
 });
 
 test('トークンが正しいときは一覧取得が成功して200が戻ること', () => {
-  verify.mockImplementation(async () => { return { hd: 'esm.co.jp', email: 'hoge@esm.co.jp' }; });
+  verify.mockImplementation(async () => { return { hd: 'esm.co.jp', email: 'test@example.com' }; });
   return request(app).get("/").then(response => {
     expect(response.statusCode).toBe(200);
-    console.log('response')
-    console.log(response.body);
     expect(response.body).toEqual(successBody);
   })
 });
