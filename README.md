@@ -24,6 +24,8 @@ Task Queue **only** create from CLI.
 
 [App Engine キューの作成](https://cloud.google.com/tasks/docs/creating-appengine-queues?hl=ja)
 
+注意) `転送設定` で `dakoku-script` サービスへ `--routing-override` を指定すること
+
 ## Run Local
 
 ### Environment

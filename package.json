@@ -9,12 +9,13 @@
   "version": "",
   "main": "index.js",
   "engines": {
-    "node": "~10.6.0",
+    "node": "10.x.x",
     "npm": "~6.4.1"
   },
   "scripts": {
     "start": "node index.js",
     "build": "cp -R node_modules/@google-web-components/google-apis node_modules/ & polymer build -v",
+    "deploy": "gcloud app deploy",
     "test": "DATASTORE_EMULATOR_HOST=localhost:8081 DATASTORE_PROJECT_ID='test' jest --runInBand",
     "lint": "eslint --fix \"**/*.js\"",
     "local": "gcloud beta emulators datastore start --no-legacy --project 'dakoku-187702' --host-port=localhost:8081 & DATASTORE_EMULATOR_HOST=localhost:8081 DATASTORE_PROJECT_ID='dakoku-187702' node index.js",
