@@ -8,13 +8,13 @@ module.exports = ({router, User}) => {
       'x-appengine-queuename': Joi.string().required()
     },
     body: {
-      cardNumber: Joi.string().regex(/^[0-9]{16}$/).required(),
+      cardNumber: Joi.string().regex(/^[0-9a-fA-F]{16}$/).required(),
       action: Joi.string().required()
     }
   };
 
   router.post('/', validate(validation), async (req, res) => {
-    const cardNumber = req.body.cardNumber;
+    const cardNumber = req.body.cardNumber.toLocaleLowerCase();
     const entity = await User.get(cardNumber).catch(err => {
       console.error('Cardnumber find error', err);
       res.status(204).send();

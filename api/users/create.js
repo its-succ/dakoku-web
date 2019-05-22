@@ -5,7 +5,7 @@ const grpc = require('grpc');
 module.exports = ({router, User, verify}) => {
   const validation = {
     body: {
-      cardNumber: Joi.string().regex(/^[0-9]{16}$/).required(),
+      cardNumber: Joi.string().regex(/^[0-9a-fA-F]{16}$/).required(),
       password: Joi.string().required()
     }
   };
@@ -17,7 +17,7 @@ module.exports = ({router, User, verify}) => {
       const user = new User({
         email: payload.email,
         password: req.body.password
-      }, req.body.cardNumber);
+      }, req.body.cardNumber.toLocaleLowerCase());
 
       const entity = await user.save(null, { method: 'insert' }).catch(err => {
         console.log('ERROR', err);
