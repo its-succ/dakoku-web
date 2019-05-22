@@ -32,6 +32,7 @@
     "@google-web-components/google-apis": "git+https://github.com/GoogleWebComponents/google-apis.git#3.x",
     "@polymer/google-signin": "git+https://github.com/GoogleWebComponents/google-signin.git",
     "@polymer/iron-ajax": "^3.0.0-pre.18",
+    "@polymer/iron-list": "^3.0.2",
     "@polymer/paper-button": "^3.0.0-pre.18",
     "@polymer/paper-input": "^3.0.0-pre.18",
     "@polymer/polymer": "^3.0.0",

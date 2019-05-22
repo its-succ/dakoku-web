@@ -3,6 +3,7 @@ import '@polymer/google-signin/google-signin.js';
 import '@polymer/iron-ajax/iron-ajax.js';
 import '@polymer/google-signin/google-signin-aware.js';
 import './dakoku-register.js';
+import './dakoku-user.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 /**
  * @customElement
@@ -25,6 +26,7 @@ class DakokuApp extends PolymerElement {
     <template is="dom-if" if="{{isAuthorized}}">
       <h2>打刻アプリにようこそ [[email]]!</h2>
       <dakoku-register token="[[idToken]]"></dakoku-register>
+      <dakoku-user token="[[idToken]]"></dakoku-user>
     </template>
 `;
   }
