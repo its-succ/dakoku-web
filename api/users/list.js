@@ -1,4 +1,3 @@
-
 module.exports = ({router, User, verify}) => {
   router.get('/', async (req, res) => {
     const idTokenString = req.token;
