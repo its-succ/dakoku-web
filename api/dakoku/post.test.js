@@ -22,7 +22,7 @@ beforeAll(async () => {
   const user = new User({
     email: 'test@example.com',
     password: 'password'
-  }, '1234567890123456');
+  }, '123456789a123456');
   await user.save();
 }, 60000);
 
@@ -35,20 +35,20 @@ afterAll(() => {
 });
 
 test('ヘッダ−に `X-AppEngine-QueueName` が含まれない場合は400エラーを返すこと', () => {
-  return request(app).post("/").send({cardNumber: '1234567890123456', action: 'enter'}).then(response => {
+  return request(app).post("/").send({cardNumber: '123456789a123456', action: 'enter'}).then(response => {
     expect(response.statusCode).toBe(400);
   })
 });
 
 test('ヘッダーに `X-AppEngine-QueueName` があるときはカード番号からユーザーを取得して dakokuRequest を実行し、202が戻ること', async () => {
   dakokuRequest.mockImplementation(async () => { return; });
-  await request(app).post("/").send({cardNumber: '1234567890123456', action: 'enter'}).set('X-AppEngine-QueueName', 'queuename').expect(202);
+  await request(app).post("/").send({cardNumber: '123456789a123456', action: 'enter'}).set('X-AppEngine-QueueName', 'queuename').expect(202);
   expect(dakokuRequest.mock.calls[0][0].email).toEqual('test@example.com');
   expect(dakokuRequest.mock.calls[0][0].password).toEqual('password');
 });
 
 test('カード番号が存在しないときは、dakokuRequestが実行されず、キューがリトライしないように204が戻ること', async () => {
   dakokuRequest.mockImplementation(async () => { return; });
-  await request(app).post("/").send({cardNumber: '1234567890123450', action: 'enter'}).set('X-AppEngine-QueueName', 'queuename').expect(204);
+  await request(app).post("/").send({cardNumber: '123456789a123450', action: 'enter'}).set('X-AppEngine-QueueName', 'queuename').expect(204);
   expect(dakokuRequest).not.toBeCalled();
 });

@@ -16,7 +16,7 @@ create({router, User, verify});
 app.use(router);
 
 const successBody = {
-  cardNumber: '1234567890123456',
+  cardNumber: '123456789a123456',
   password: 'password'
 };
 
@@ -48,7 +48,7 @@ test.each`
 cardNumber            | password      | desc
 ${""}                 | ${"1234567"}  | ${"カード番号が空"}
 ${"123"}              | ${"1234567"}  | ${"カード番号が16桁でない"}
-${"123456789a123456"} | ${"1234567"}  | ${"カード番号が16桁だが数字以外が含まれている"}
+${"123456789g123456"} | ${"1234567"}  | ${"カード番号が16桁だが16進数以外が含まれている"}
 ${"1234567890123456"} | ${""}         | ${"パスワードが空"}
 `('$descによってバリデーションエラーの場合は400エラーを返すこと', ({cardNumber, password}) => {
   verify.mockImplementation(async () => { return { hd: 'esm.co.jp', email: 'hoge@esm.co.jp' }; });
