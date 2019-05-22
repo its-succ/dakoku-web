@@ -1,6 +1,5 @@
 const validate = require('express-validation');
 const Joi = require('joi');
-const grpc = require('grpc');
 
 module.exports = ({router, User, verify}) => {
   const validation = {
