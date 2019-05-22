@@ -1,6 +1,3 @@
-const validate = require('express-validation');
-const Joi = require('joi');
-const grpc = require('grpc');
 
 module.exports = ({router, User, verify}) => {
   router.get('/', async (req, res) => {
