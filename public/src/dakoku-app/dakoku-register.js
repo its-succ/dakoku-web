@@ -34,7 +34,7 @@ class DakokuRegister extends PolymerElement {
         on-response="handleRegisterSuccess"
         on-error="handleRegisterError"></iron-ajax>
       <h3>カード登録</h3>
-      <paper-input id="cardnumber" label="NFC ID" placeholder="社員証やSUICAなどのカードIDを数字16桁で入力してください" value="{{cardNumber::input}}" required allowed-pattern="[0-9]" maxlength="16" error-message="社員証やSUICAなどのカードIDを数字16桁で入力してください"></paper-input>
+      <paper-input id="cardnumber" label="NFC ID" placeholder="社員証やSUICAなどのカードIDを16桁の16進数で入力してください" value="{{cardNumber::input}}" required allowed-pattern="[0-9a-fA-F]" maxlength="16" error-message="社員証やSUICAなどのカードIDを16桁の16進数で入力してください"></paper-input>
       <paper-input id="password" label="TeamSpritのパスワード" placeholder="TeamSpritのパスワードを入力してください" type="password" value="{{password::input}}" required auto-validate error-message="必須入力です"></paper-input>
       <br><br>
       <paper-button id="button" raised active disabled class="indigo" on-click="register">登録</paper-button>
