@@ -10,13 +10,21 @@ class DakokuUser extends PolymerElement {
         <!-- TODO Style必要か確認する -->
         </style>
       </custom-style>
-      <!--  TODO iron-ajax でAPI呼ぶ -->
+      <iron-ajax
+        id="ajax"
+        auto
+        method="GET"
+        url="/api/users"
+        content-type="application/json"
+        headers$='{"Authorization": "Bearer {{token}}"}'
+        last-response="{{items}}"
+        on-response="handleListSuccess"
+        on-error="handleListError"></iron-ajax>
       <h3>カード一覧</h3>
-      <!-- TODO APIで取得した結果を反映する -->
-      <iron-list items="[[items]]">
+      <iron-list items="[[items]]" as="item">
         <template>
           <div>
-            CardNo: [[item]]
+            No : [[item]]
           </div>
         </template>
       </iron-list>
@@ -29,21 +37,15 @@ class DakokuUser extends PolymerElement {
 
   static get properties() {
     return {
-      items: {
-        type: Array,
-        value: function() {
-          return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
-        }
-      },
-      token: String,
+      token: String
     };
   }
 
-  handleRegisterSuccess() {
+  handleListSuccess(response) {
     console.log(arguments)
   }
 
-  handleRegisterError() {
+  handleListError() {
     console.log(arguments)
   }
 }
