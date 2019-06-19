@@ -5,11 +5,6 @@ import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 class DakokuUser extends PolymerElement {
   static get template() {
     return html`
-      <custom-style>
-        <style>
-        <!-- TODO Style必要か確認する -->
-        </style>
-      </custom-style>
       <iron-ajax
         id="ajax"
         auto
