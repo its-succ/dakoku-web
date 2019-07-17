@@ -48,14 +48,14 @@
     "joi": "^14.3.1"
   },
   "devDependencies": {
-    "@webcomponents/webcomponentsjs": "^2.0.0",
-    "eslint": "^5.16.0",
-    "eslint-plugin-jest": "^22.6.4",
+    "@webcomponents/webcomponentsjs": "^2.2.10",
+    "eslint": "^6.0.1",
+    "eslint-plugin-jest": "^22.9.0",
     "eslint-plugin-node": "^9.1.0",
     "google-cloud-gui": "^0.2.2",
     "google-datastore-emulator": "^2.2.0",
-    "polymer-cli": "^1.9.10",
-    "polymer-modulizer": "^0.4.3",
+    "lodash": ">=4.17.13",
+    "polymer-cli": "^1.9.11",
     "supertest": "^4.0.2",
     "wct-browser-legacy": "^1.0.1"
   },
