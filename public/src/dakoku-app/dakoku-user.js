@@ -1,6 +1,6 @@
 import { PolymerElement } from '@polymer/polymer/polymer-element.js';
 import '@polymer/iron-ajax/iron-ajax.js';
-import '@polymer/iron-list/iron-list.js';
+import '@polymer/paper-item/paper-item.js';
 import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 class DakokuUser extends PolymerElement {
   static get template() {
@@ -16,13 +16,11 @@ class DakokuUser extends PolymerElement {
         on-response="handleListSuccess"
         on-error="handleListError"></iron-ajax>
       <h3>カード一覧</h3>
-      <iron-list items="[[items]]" as="item">
-        <template>
-          <div>
-            No : [[item]]
-          </div>
+      <div role="listbox">
+        <template is="dom-repeat" items="{{items}}" mutable-data>
+          <paper-item>[[item]]</paper-item>
         </template>
-      </iron-list>
+      </div>
     `;
   }
 
