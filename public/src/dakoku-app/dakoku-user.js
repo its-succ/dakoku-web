@@ -36,7 +36,7 @@ class DakokuUser extends PolymerElement {
           <p>このカードを削除します。よろしいですか？</p>
           <div>
             <paper-button dialog-dismiss autofocus>いいえ</paper-button>
-            <paper-button dialog-confirm>はい</iron-icon></paper-button>
+            <paper-button dialog-confirm>はい</paper-button>
           </div>
         </paper-dialog>
       </div>
