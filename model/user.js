@@ -1,5 +1,6 @@
-const Datastore = require('@google-cloud/datastore');
-const gstore = require('gstore-node')();
+const { Datastore } = require('@google-cloud/datastore');
+const { Gstore } = require('gstore-node');
+const gstore = new Gstore();
 const crypto = require('crypto');
 const { Schema } = gstore;
 
