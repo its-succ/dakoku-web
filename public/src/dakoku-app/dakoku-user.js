@@ -24,23 +24,33 @@ class DakokuUser extends PolymerElement {
         last-response="{{items}}"
         on-response="handleListSuccess"
         on-error="handleListError"></iron-ajax>
+      <iron-ajax
+        id="ajax"
+        method="DELETE"
+        url="/api/users/{{targetCardNumber}}"
+        content-type="application/json"
+        on-response="handleDeleteSuccess"
+        on-error="handleDeleteError">
+      </iron-ajax>
+
       <h3>カード一覧</h3>
       <div role="listbox">
         <template is="dom-repeat" items="{{items}}" mutable-data>
           <paper-item>
             <paper-item-body>[[item]]</paper-item-body>
-            <paper-icon-item on-click="clickDelete">
+            <paper-icon-item on-click="confirmDelete">
               <iron-icon icon="delete"></iron-icon> 
             </paper-icon-item>
           </paper-item>
-          
         </template>
+        
         <paper-dialog id="dialog">
             <h2>削除確認</h2>
-            <p>このカードを削除します。よろしいですか？</p>
+            <p>{{targetCardNumber}}</p>
+            <p>上記のカードを削除します。よろしいですか？</p>
             <div class="buttons">
               <paper-button dialog-dismiss autofocus>いいえ</paper-button>
-              <paper-button dialog-confirm>はい</paper-button>
+              <paper-button dialog-confirm on-click="deleteCard">はい</paper-button>
             </div>
         </paper-dialog>
       </div>
@@ -53,12 +63,20 @@ class DakokuUser extends PolymerElement {
 
   static get properties() {
     return {
-      token: String
+      token: String,
+      targetCardNumber: {
+        type: String
+      }
     };
   }
 
-  clickDelete(event) {
+  confirmDelete(event) {
+    this.targetCardNumber = event.model.item;
     this.$.dialog.open();
+  }
+
+  deleteCard(item) {
+    this.$.ajax.generateRequest();
   }
 
   handleListSuccess(response) {
@@ -66,6 +84,14 @@ class DakokuUser extends PolymerElement {
   }
 
   handleListError() {
+    console.log(arguments)
+  }
+
+  handleDeleteSuccess(response) {
+    console.log(arguments)
+  }
+
+  handleDeleteError() {
     console.log(arguments)
   }
 }
