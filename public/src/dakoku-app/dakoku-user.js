@@ -9,6 +9,11 @@ import { html } from '@polymer/polymer/lib/utils/html-tag.js';
 class DakokuUser extends PolymerElement {
   static get template() {
     return html`
+      <style>
+        .buttons {
+          position: relative;
+        }
+      </style>
       <iron-ajax
         id="ajax"
         auto
@@ -28,19 +33,17 @@ class DakokuUser extends PolymerElement {
               <iron-icon icon="delete"></iron-icon> 
             </paper-icon-item>
           </paper-item>
+          
         </template>
-      </div>
-      <div>
         <paper-dialog id="dialog">
-          <h2>削除確認</h2>
-          <p>このカードを削除します。よろしいですか？</p>
-          <div>
-            <paper-button dialog-dismiss autofocus>いいえ</paper-button>
-            <paper-button dialog-confirm>はい</paper-button>
-          </div>
+            <h2>削除確認</h2>
+            <p>このカードを削除します。よろしいですか？</p>
+            <div class="buttons">
+              <paper-button dialog-dismiss autofocus>いいえ</paper-button>
+              <paper-button dialog-confirm>はい</paper-button>
+            </div>
         </paper-dialog>
       </div>
-      
     `;
   }
 
