@@ -8,11 +8,11 @@ const User = require('../../model/user');
 const verify = require('../token-verifier');
 jest.mock('../token-verifier');
 
-const delete = require('./delete');
+const deleteCard = require('./delete');
 const app = express();
 app.use(bodyParser.json());
 
-delete({router, User, verify});
+deleteCard({router, User, verify});
 app.use(router);
 
 const successCard = '123456789a123456';
