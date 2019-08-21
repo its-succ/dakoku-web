@@ -25,11 +25,12 @@ class DakokuUser extends PolymerElement {
         on-response="handleListSuccess"
         on-error="handleListError"></iron-ajax>
       <iron-ajax
-        id="ajax"
+        id="deleteCard"
         method="DELETE"
-        url="/api/users/{{targetCardNumber}}"
+        url="/api/users"
         content-type="application/json"
         headers$='{"Authorization": "Bearer {{token}}"}'
+        body="[[targetCardNumber]]"
         on-response="handleDeleteSuccess"
         on-error="handleDeleteError">
       </iron-ajax>
@@ -77,7 +78,8 @@ class DakokuUser extends PolymerElement {
   }
 
   deleteCard(item) {
-    this.$.ajax.generateRequest();
+    console.log('deleteCard')
+    this.$.deleteCard.generateRequest();
   }
 
   handleListSuccess(response) {
