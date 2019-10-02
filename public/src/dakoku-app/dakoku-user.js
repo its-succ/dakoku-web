@@ -27,10 +27,8 @@ class DakokuUser extends PolymerElement {
       <iron-ajax
         id="deleteCard"
         method="DELETE"
-        url="/api/users"
-        content-type="application/json"
+        url="/api/users/{{targetCardNumber}}"
         headers$='{"Authorization": "Bearer {{token}}"}'
-        body="[[targetCardNumber]]"
         on-response="handleDeleteSuccess"
         on-error="handleDeleteError">
       </iron-ajax>
