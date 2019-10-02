@@ -41,10 +41,10 @@ test('トークンのドメインが不正な場合は403エラーを返すこ�
   })
 });
 
-test('カード番号が指定されていない場合は400エラーを返すこと', () => {
+test('カード番号が指定されていない場合は404エラーを返すこと', () => {
   verify.mockImplementation(async () => { return { hd: 'gmail.com' }; });
   return request(app).del("/").then(response => {
-    expect(response.statusCode).toBe(400);
+    expect(response.statusCode).toBe(404);
   })
 });
 
