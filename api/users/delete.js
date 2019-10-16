@@ -14,7 +14,7 @@ module.exports = ({ router, User, verify }) => {
           return;
         }
 
-        res.json(response);
+        res.status(200).send();
       })
       .catch(err => {
         console.log('ERROR', err);
