@@ -89,6 +89,8 @@ class DakokuUser extends PolymerElement {
   }
 
   handleDeleteSuccess(response) {
+    this.items = this.items.filter(item => item !== this.targetCardNumber);
+
     console.log(arguments)
   }
 
