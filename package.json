@@ -46,7 +46,7 @@
     "express-validation": "^1.0.2",
     "google-auth-library": "^5.1.2",
     "grpc": "^1.22.2",
-    "gstore-node": "^6.0.2",
+    "gstore-node": "^7.2.0",
     "joi": "^14.3.1"
   },
   "devDependencies": {
