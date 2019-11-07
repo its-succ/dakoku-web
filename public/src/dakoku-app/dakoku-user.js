@@ -89,6 +89,9 @@ class DakokuUser extends PolymerElement {
   }
 
   handleDeleteSuccess(response) {
+    const index = this.items.indexOf(this.targetCardNumber);
+    this.splice('items', index, 1);
+
     console.log(arguments)
   }
 
