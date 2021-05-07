@@ -56,7 +56,7 @@
     "eslint-plugin-node": "^9.1.0",
     "google-cloud-gui": "^0.2.2",
     "google-datastore-emulator": "^2.2.0",
-    "lodash": ">=4.17.13",
+    "lodash": ">=4.17.21",
     "polymer-cli": "^1.9.11",
     "jest": "^24.8.0",
     "supertest": "^4.0.2",
